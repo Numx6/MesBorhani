@@ -1,0 +1,74 @@
+﻿@model DataLayer.User
+
+@{
+	ViewBag.Title = "حذف کاربر";
+}
+
+	<div class="row">
+		<div class="container">
+			<div class="col-lg-12">
+				<br />
+				@{
+					if (ViewBag.admin == "admin")
+					{
+						<p class="big-text alert alert-danger">شما نمی توانید این کاربر را حذف کنید .</p>
+						<a href="@Url.Action("index")" class="btn btn-warning">بازگشت به لیست</a>
+					}
+					else
+					{
+						<p class="big-text alert alert-warning">حذف کاربر</p>
+						<hr />
+						<div>
+							<p class="text-danger big-text">ایا از حذف این کاربر مطمعن هستید ؟</p>
+							<dl class="dl-horizontal">
+								<dt>
+									@Html.DisplayNameFor(model => model.Name)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.Name)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.UserName)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.UserName)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.Password)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.Password)
+								</dd>
+
+								<dt>
+									@Html.DisplayNameFor(model => model.CreatDate)
+								</dt>
+
+								<dd>
+									@Html.DisplayFor(model => model.CreatDate)
+								</dd>
+
+							</dl>
+							<hr />
+
+							@using (Html.BeginForm())
+							{
+								@Html.AntiForgeryToken()
+
+								<div class="form-actions no-color">
+									<input type="submit" value="حذف" class="btn btn-danger btn-xl" /> |
+									@Html.ActionLink("بازگشت به لیست", "Index")
+								</div>
+							}
+						</div>
+					}
+				}
+
+			</div>
+		</div>
+	</div>
